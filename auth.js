@@ -10,6 +10,8 @@ fb.set('client_secret', process.env.fb_client_secret);
 //export fb as a parameter to be used by other methods that require it.
 exports.fb = fb;
 
+console.log("this happened");
+
 
 /**
 * Add your authentication apis here with example like the bottom
