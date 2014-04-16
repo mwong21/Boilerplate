@@ -26,7 +26,7 @@ app.use(express.bodyParser());
 var conf = {
     client_id:      '227774884083477'
   , client_secret:  'ac125834434e415cbf1585e56a42e401'
-  , scope:          'email, read_stream, user_status'
+  , scope:          'email, read_stream, user_status, friends_likes, user_interests, friends_interests, user_actions.video, user_likes'
   , redirect_uri:   'http://localhost:3000/connect'
 };
 console.log("this happened");
