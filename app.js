@@ -9,7 +9,10 @@ var app = express();
 //route files to load
 var index = require('./routes/index');
 var connect = require('./routes/connect');
+var twitter = require('./routes/twitter');
 var connected = require('./routes/connected');
+var Twit = require('twit');
+
 global.graph = graph;
 
 //database setup - uncomment to set up your database
@@ -22,6 +25,13 @@ app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.bodyParser());
+
+var T = new Twit({
+    consumer_key: 'zLCZBXwMQA4o3CwTigDnTr4Bj'
+  , consumer_secret: 'QAv4ztXOLSZVkYOeq6m3cj4w933Af4BlbvLkabc0wKlTIovOWq' 
+  , access_token: '65550821-hdhrNIaX1KDRpMMzVQvTo97wTpgsX5YRZTH3rgttG' 
+  , access_token_secret: 'wLPzzLpJe6BWyFQDk9QDfOPancDr6GwCf7lGnmii8M7pZ' 
+});
 
 var conf = {
     client_id:      '227774884083477'
@@ -68,6 +78,12 @@ app.get('/connect', function(req, res) {
 });
 console.log(graph.getAccessToken());
 app.get('/connected', connected.view);
+
+app.get('/twitter', function(req, res) {
+    //twitter authentication goes here...
+    res.redirect('/connected'); 
+    
+});
 
 //set environment ports and start application
 app.set('port', process.env.PORT || 3000);

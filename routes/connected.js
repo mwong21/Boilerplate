@@ -1,6 +1,7 @@
 var allMovies;
 exports.view = function(req, res) {
 	res.render('connected');
+    //var jumbotron = this.getElementById("jumbotron");
     //console.log("hi" + global.graph.getAccessToken());
    
     //var friends = new Array();
@@ -83,5 +84,11 @@ function findtop(movies) {
     
     sortable.sort(function(a, b) {return a[1] - b[1]})
     
+    doneSorting(sortable);
     console.log(sortable);   
+}
+
+function doneSorting(movies) {
+   // getElementById("loading").hide();
+    //stop the loading animation   
 }
