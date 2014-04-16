@@ -28,51 +28,12 @@ exports.view = function(req, res) {
             //console.log("#" + i + ": " + friends[i].name);
             var currID = friends[i].id;
             allFriends.push(currID);
-
-            //console.log("getting movie for " + currID);
-            graph.get("/" + currID + "/movies", function (err2, mres) {
-                console.log(i);
-
-                var movies = mres.data;
-                var numMovies = movies.length;
-               //console.log(movies);
-                
-                for (var j = 0; j < numMovies; j++) {
-                    var temp = movies[j].name.toString();
-                    allMovies.push(temp);
-                    //console.log(allMovies.pop());
-                    //console.log(movies[j]);
-                }
-                
-                //function(a, b) {
-                //    return a.localeCompare(b);
-                //});
-                //console.log(i);
-                
-                /*
-                if (i === numFriends) {
-                    
-                allMovies.sort(strcmp);
-                    console.log("length = " + allMovies.length);
-                    for (var k = 0; k < allMovies.length; k++) 
-                        console.log(allMovies[k]);
-                }*/
-                
-                
-            });
-                            //console.log("int length = " + allMovies.length);
-
         }
+            findMovies(allFriends);
+           // console.log(allFriends.length);
 
-                
-   
-        //friends = res;
-    });
-
-    console.log("done");
-    findtop(allMovies);
-
-    //console.log(friends);
+        });
+              
 }
 
 function strcmp(a, b) {
@@ -82,9 +43,45 @@ function strcmp(a, b) {
     return a.charAt(i) > b.charAt(i) ? -1 : 1;
 }
 
+var x = 0; //keeps track of how many friends were already checked
+function findMovies(friends) {
+    x = friends.length;
+    for (var i = 0; i < friends.length; i++) {
+        var currID = friends[i];
+        //console.log(currID);
+        graph.get("/" + currID + "/movies", function (err, res) {
+            var movies = res.data;
+            x--;
+            
+            for (var j = 0; j < movies.length; j++) {
+                allMovies.push(movies[j].name);
+            }
+            
+            if (x == 0)  //to make sure it's only executed once
+                findtop(allMovies);
+            //console.log("here");
+        }); //end get movies
+    }
+} //end findmovies
+var movieMap;
 function findtop(movies) {
+    movieMap = {};
     movies.sort(strcmp);
-                    console.log("length = " + movies.length);
-                    for (var k = 0; k < movies.length; k++) 
-                        console.log(movies[k]);
+    //console.log("length = " + movies.length);
+    for (var k = 0; k < movies.length; k++) {
+        if (movieMap[movies[k]] > 0) 
+            movieMap[movies[k]]++;
+        else 
+            movieMap[movies[k]] = 1;
+        
+    }
+    var sortable = [];
+
+    for (movie in movieMap) {
+      sortable.push([movie, movieMap[movie]]) 
+    }
+    
+    sortable.sort(function(a, b) {return a[1] - b[1]})
+    
+    console.log(sortable);   
 }
