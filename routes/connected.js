@@ -1,6 +1,13 @@
+var cheerio = require('cheerio');
+var request = require('request');
+var results = require('../results.json');
+
+var gres;
+
 var allMovies;
-exports.view = function(req, res) {
-	res.render('connected');
+exports.view = function(res) {
+    //res.render('connected');
+    gres = res;
     //var jumbotron = this.getElementById("jumbotron");
     //console.log("hi" + global.graph.getAccessToken());
    
@@ -85,10 +92,23 @@ function findtop(movies) {
     sortable.sort(function(a, b) {return a[1] - b[1]})
     
     doneSorting(sortable);
-    console.log(sortable);   
+   // console.log(sortable);   
 }
 
 function doneSorting(movies) {
-   // getElementById("loading").hide();
-    //stop the loading animation   
+    movies.reverse();
+    //gres.send(movies);
+   // gres.json(movies); 
+    //console.log(movies);
+    var result = {list: []};
+    for (var i = 0; i < movies.length; i++) { //convert to JSON
+        var curr = movies[i];
+        //console.log(curr[0]);
+        result.list.push({"title": curr[0], "likes": curr[1]});
+    }
+    //var result = {'title': 'Harry Potter', 'likes': '41'};
+    //console.log(result);
+    gres.render('connected', result);
+
+    //document.getElementById("loading").hide();
 }

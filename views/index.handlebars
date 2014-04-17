@@ -16,6 +16,8 @@
       <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
       <link rel="stylesheet" type="text/css" href="css/social-buttons.css">
+      <link rel="stylesheet" type="text/css" href="css/connected.css">
+
       <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
@@ -30,19 +32,33 @@
 
         <form id="connect" role="form" method="get" action="/connect">
        
-                <button type="submit" class="btn btn-facebook btn-lg"><i class="fa fa-facebook"></i> | Connect with Facebook</button>
+                <button type="submit" id = "fb-connect" class="btn btn-facebook btn-lg"><i class="fa fa-facebook"></i> | Connect with Facebook</button>
         </form>
                           
         <form id="connect" role="form" method="get" action="/twitter">
 
-                <button type="submit" class="btn btn-twitter btn-lg"><i class="fa fa-twitter"></i> | Connect with Twitter</button>
+                <button type="submit" id = "tw-connect" class="btn btn-twitter btn-lg"><i class="fa fa-twitter"></i> | Connect with Twitter</button>
         </form>
                           
         </div>
             
 
     </div>
+    
+          <div class="load">
+            <div class="spinner"></div>
+            <div id="loading">Loading</div>
+        </div>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script type=text/javascript>
+        $(".load").hide();
+        
+        $("#fb-connect").click( function() {
+            $("#fb-connect").hide();
+            $("#tw-connect").hide();
+            $(".load").show();
+        });
+    </script>
 </body>
 </html>

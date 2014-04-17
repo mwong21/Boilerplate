@@ -17,20 +17,38 @@
       <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
       <link rel="stylesheet" type="text/css" href="css/social-buttons.css">
       <link rel="stylesheet" type="text/css" href="css/connected.css">
-
+        
       <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
+    
+   
     <div class="jumbotron">
         <h1>Contempo</h1>
     </div>
     
-      <div class="container">
-            <div class="spinner"></div>
-            <div id="loading">Loading</div>
+    <div id="container">
+    <table id="results">
+        <tr id="header">
+            <td>Movie Title</td>
+            <td>Likes</td>
+        </tr>
+        {{#each list}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{likes}}</td>
+            </tr>
+        {{/each}}
+    </table>
     </div>
+
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
-</body>
+    <script type="text/javascript">
+            //$("#loading").hide();
+        
+    </script>
+
+</body> 
 </html>

@@ -5,10 +5,12 @@ var path = require('path');
 var graph = require('fbgraph');
 var handlebars = require('express3-handlebars');
 var app = express();
+var cheerio = require('cheerio');
+var request = require('request');
 
 //route files to load
 var index = require('./routes/index');
-var connect = require('./routes/connect');
+//var connect = require('./routes/connect');
 var twitter = require('./routes/twitter');
 var connected = require('./routes/connected');
 var Twit = require('twit');
@@ -77,14 +79,19 @@ app.get('/connect', function(req, res) {
 
 });
 console.log(graph.getAccessToken());
-app.get('/connected', connected.view);
+app.get('/connected', function(req, res) {
+    //res.render('connected');
+    connected.view(res);
+});
 
 app.get('/twitter', function(req, res) {
     //twitter authentication goes here...
     res.redirect('/connected'); 
     
 });
-
+app.post('/movies', function(req, res) {
+    
+});
 //set environment ports and start application
 app.set('port', process.env.PORT || 3000);
 http.createServer(app).listen(app.get('port'), function(){
