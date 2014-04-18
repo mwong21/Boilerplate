@@ -5,8 +5,7 @@ var path = require('path');
 var graph = require('fbgraph');
 var handlebars = require('express3-handlebars');
 var app = express();
-var cheerio = require('cheerio');
-var request = require('request');
+
 
 //route files to load
 var index = require('./routes/index');
@@ -39,7 +38,7 @@ var conf = {
     client_id:      '227774884083477'
   , client_secret:  'ac125834434e415cbf1585e56a42e401'
   , scope:          'email, read_stream, user_status, friends_likes, user_interests, friends_interests, user_actions.video, user_likes'
-  , redirect_uri:   'http://localhost:3000/connect'
+  , redirect_uri:   'http://young-fjord-1191.herokuapp.com/connect'
 };
 console.log("this happened");
 

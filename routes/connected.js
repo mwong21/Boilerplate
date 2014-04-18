@@ -1,7 +1,3 @@
-var cheerio = require('cheerio');
-var request = require('request');
-var results = require('../results.json');
-
 var gres;
 
 var allMovies;
