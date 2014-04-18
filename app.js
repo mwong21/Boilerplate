@@ -92,7 +92,7 @@ app.post('/movies', function(req, res) {
     
 });
 //set environment ports and start application
-app.set('port', process.env.PORT || 3000);
-http.createServer(app).listen(app.get('port'), function(){
+//app.set('port', process.env.PORT || 3000);
+http.createServer(app).listen(process.env.PORT || 3000, function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
