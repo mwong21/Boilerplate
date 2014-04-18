@@ -27,18 +27,13 @@ app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.bodyParser());
 
-var T = new Twit({
-    consumer_key: 'zLCZBXwMQA4o3CwTigDnTr4Bj'
-  , consumer_secret: 'QAv4ztXOLSZVkYOeq6m3cj4w933Af4BlbvLkabc0wKlTIovOWq' 
-  , access_token: '65550821-hdhrNIaX1KDRpMMzVQvTo97wTpgsX5YRZTH3rgttG' 
-  , access_token_secret: 'wLPzzLpJe6BWyFQDk9QDfOPancDr6GwCf7lGnmii8M7pZ' 
-});
+
 
 var conf = {
-    client_id:      '227774884083477'
-  , client_secret:  'ac125834434e415cbf1585e56a42e401'
+    client_id:      '484197295013302'
+  , client_secret:  '3b6dea2d1ecf2e4a101039a280f6d1ad'
   , scope:          'email, read_stream, user_status, friends_likes, user_interests, friends_interests, user_actions.video, user_likes'
-  , redirect_uri:   'http://sleepy-beach-1656.herokuapp.com/connect'
+  , redirect_uri:   'http://localhost:3000/connect'
 };
 console.log("this happened");
 
@@ -71,6 +66,9 @@ app.get('/connect', function(req, res) {
     , "code":           req.query.code
   }, function (err, facebookRes) {
       console.log("hi " + graph.getAccessToken() + "!!!");
+      
+      
+   
 
     res.redirect('/connected');
   });
@@ -92,7 +90,7 @@ app.post('/movies', function(req, res) {
     
 });
 //set environment ports and start application
-//app.set('port', process.env.PORT || 3000);
-http.createServer(app).listen(process.env.PORT || 3000, function(){
+app.set('port', process.env.PORT || 3000);
+http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });

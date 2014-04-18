@@ -1,9 +1,17 @@
 var gres;
-
+var Twit = require('twit');
+var T;
 var allMovies;
 exports.view = function(res) {
     //res.render('connected');
     gres = res;
+    
+    T = new Twit({
+    consumer_key: 'zLCZBXwMQA4o3CwTigDnTr4Bj'
+  , consumer_secret: 'QAv4ztXOLSZVkYOeq6m3cj4w933Af4BlbvLkabc0wKlTIovOWq' 
+  , access_token: '65550821-hdhrNIaX1KDRpMMzVQvTo97wTpgsX5YRZTH3rgttG' 
+  , access_token_secret: 'wLPzzLpJe6BWyFQDk9QDfOPancDr6GwCf7lGnmii8M7pZ' 
+});
     //var jumbotron = this.getElementById("jumbotron");
     //console.log("hi" + global.graph.getAccessToken());
    
@@ -93,18 +101,28 @@ function findtop(movies) {
 
 function doneSorting(movies) {
     movies.reverse();
-    //gres.send(movies);
-   // gres.json(movies); 
-    //console.log(movies);
+    
+    
     var result = {list: []};
-    for (var i = 0; i < movies.length; i++) { //convert to JSON
+    var x = 25;
+    for (var i = 0; i < x; i++) { //convert to JSON
         var curr = movies[i];
+         
+        T.get('search/tweets', { q: '"#' + curr[0] + '"' + ' since:2014-04-18', count: 100 }, function(err, reply) {
+        if (err) {
+        console.log(err);
+    } else {
+        x--;
+
+        console.log(reply);
+        console.log(reply.statuses.length);    
+        result.list.push({"title": curr[0], "likes": curr[1], "tweets": reply.statuses.length});
+        if (x == 0) gres.render('connected', result);
+    }
+        });//end get
         //console.log(curr[0]);
-        result.list.push({"title": curr[0], "likes": curr[1]});
     }
     //var result = {'title': 'Harry Potter', 'likes': '41'};
-    //console.log(result);
-    gres.render('connected', result);
 
     //document.getElementById("loading").hide();
 }

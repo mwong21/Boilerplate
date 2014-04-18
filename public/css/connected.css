@@ -21,6 +21,10 @@ p {
     width:100%;
     
 }
+
+td {
+    padding-right:20px;
+}
 .spinner {
   width: 70px;
   height: 70px;
