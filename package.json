@@ -14,7 +14,7 @@
     "passport-facebook": "*",
     "passport-twitter": "*",
     "dotenv": "*",
-    "fbgraph": "*"
+    "fbgraph": "*",
     "twit": "*"
   },
   "engines": {
