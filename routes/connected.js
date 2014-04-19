@@ -1,5 +1,6 @@
 var gres;
 var Twit = require('twit');
+var request = require('request');
 var T;
 var allMovies;
 exports.view = function(res) {
@@ -116,13 +117,18 @@ function doneSorting(movies) {
         result.list.push({"title": curr[0], "likes": curr[1]});
 
     }
- 
+    request.post('https://api.twitter.com/1.1/statuses/update.json', {status:'The top movie among my Facebook friends was ' + movies[0][0] + ' - Contempo.'}, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body)
+        }
+    });
     
+    /*
     T.post('statuses/update', { status: 'The top movie among my facebook friends was ' + movies[0][0] + ' -Contempo.' }, function(err, reply) {
             if (err) console.log(err);
             else console.log(reply);
   //  ...
-});
+});*/
     gres.render('connected', result);
 
     //var result = {'title': 'Harry Potter', 'likes': '41'};
