@@ -18,6 +18,8 @@ var twitter = require('./routes/twitter');
 var connected = require('./routes/connected');
 var Twit = require('twit');
 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.bodyParser());
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -83,8 +85,6 @@ global.graph = graph;
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.bodyParser());
 
 
 
