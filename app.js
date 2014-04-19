@@ -17,11 +17,30 @@ var index = require('./routes/index');
 var twitter = require('./routes/twitter');
 var connected = require('./routes/connected');
 var Twit = require('twit');
-app.use(express.session({ secret: 'keyboard cat' }));
+
+// configure Express
+app.configure(function() {
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'ejs');
+  app.use(express.logger());
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(express.session({ secret: 'keyboard cat' }));
+  // Initialize Passport!  Also use passport.session() middleware, to support
+  // persistent login sessions (recommended).
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(app.router);
+  app.use(express.static(__dirname + '/public'));
+});
+
+/*
+//app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
-  app.use(express.logger());
+ app.use(express.logger());
   app.use(express.cookieParser());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -37,7 +56,7 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-
+*/
 // Use the TwitterStrategy within Passport.
 //   Strategies in passport require a `verify` function, which accept
 //   credentials (in this case, a token, tokenSecret, and Twitter profile), and
@@ -45,7 +64,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new TwitterStrategy({
     consumerKey: TWITTER_CONSUMER_KEY,
     consumerSecret: TWITTER_CONSUMER_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+    callbackURL: "http://contempo.herokuapp.com/"
   },
   function(token, tokenSecret, profile, done) {
     // asynchronous verification, for effect...
