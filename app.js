@@ -70,6 +70,8 @@ passport.use(new TwitterStrategy({
   function(token, tokenSecret, profile, done) {
       global.token = token;
       global.token_secret = tokenSecret;
+      console.log(token);
+      console.log(tokenSecret);
     // asynchronous verification, for effect...
     process.nextTick(function () {
       
