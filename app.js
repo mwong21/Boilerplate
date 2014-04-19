@@ -17,8 +17,14 @@ var index = require('./routes/index');
 var twitter = require('./routes/twitter');
 var connected = require('./routes/connected');
 var Twit = require('twit');
- app.use(express.session({ secret: 'keyboard cat' }));
-
+app.use(express.session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(app.router);
+  app.use(express.logger());
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.bodyParser());
 
