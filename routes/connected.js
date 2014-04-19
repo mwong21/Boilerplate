@@ -10,10 +10,10 @@ exports.view = function(res) {
     console.log('TOKEN SECRET: ' + global.token_secret);
     
     T = new Twit({
-    consumer_key: 'K2BwiEw8eKwox259cboeW4ak3'
-  , consumer_secret: 'rR2vnMDKyLrKx3FtOf98KK31weSIlZzr6HraeD76cNKI4cG9DE' 
-  , access_token: global.token 
-  , access_token_secret: global.token_secret
+    consumer_key: global.token
+  , consumer_secret: global.token_secret
+  , access_token: '29647529-lFQajBfJG5JB1E47Jwp3FVY095JasGvJMzicIN3cJ' 
+  , access_token_secret: 'dhMP0R9HD9LfhYz0cD2olIGUF06t7pZ0JFBQ0IWUmPyAY' 
 });
     //var jumbotron = this.getElementById("jumbotron");
     //console.log("hi" + global.graph.getAccessToken());
