@@ -12,8 +12,8 @@ exports.view = function(res) {
         console.log('TOKEN: ' + tokens);
     console.log('TOKEN SECRET: ' + secret);
     T = new Twit({
-    consumer_key: tokens
-  , consumer_secret: secret
+    consumer_key: secret
+  , consumer_secret: tokens
   , access_token: '29647529-lFQajBfJG5JB1E47Jwp3FVY095JasGvJMzicIN3cJ' 
   , access_token_secret: 'dhMP0R9HD9LfhYz0cD2olIGUF06t7pZ0JFBQ0IWUmPyAY' 
 });
@@ -116,21 +116,13 @@ function doneSorting(movies) {
         result.list.push({"title": curr[0], "likes": curr[1]});
 
     }
-    T.get('statuses/show/:id', { 
-    screen_name: 'kev', 
-    trim_user: true,
-    include_my_retweet: false,
-    include_entities: false
-}, function(err, reply){
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(reply));
-});    
-    /*
+ 
+    
     T.post('statuses/update', { status: 'The top movie among my facebook friends was ' + movies[0][0] + ' -Contempo.' }, function(err, reply) {
             if (err) console.log(err);
             else console.log(reply);
   //  ...
-});*/
+});
     gres.render('connected', result);
 
     //var result = {'title': 'Harry Potter', 'likes': '41'};
