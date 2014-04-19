@@ -17,9 +17,11 @@ var index = require('./routes/index');
 var twitter = require('./routes/twitter');
 var connected = require('./routes/connected');
 var Twit = require('twit');
+ app.use(express.session({ secret: 'keyboard cat' }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.bodyParser());
+
 
 passport.serializeUser(function(user, done) {
   done(null, user);
