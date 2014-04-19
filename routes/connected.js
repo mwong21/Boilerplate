@@ -13,10 +13,10 @@ exports.view = function(res) {
         console.log('TOKEN: ' + tokens);
     console.log('TOKEN SECRET: ' + secret);
     T = new Twit({
-    consumer_key: '29647529-lFQajBfJG5JB1E47Jwp3FVY095JasGvJMzicIN3cJ' 
-  , consumer_secret: 'dhMP0R9HD9LfhYz0cD2olIGUF06t7pZ0JFBQ0IWUmPyAY' 
-  , access_token: tokens
-  , access_token_secret: secret
+    consumer_key: tokens    
+  , consumer_secret: secret
+  , access_token: '29647529-lFQajBfJG5JB1E47Jwp3FVY095JasGvJMzicIN3cJ' 
+  , access_token_secret: 'dhMP0R9HD9LfhYz0cD2olIGUF06t7pZ0JFBQ0IWUmPyAY'
 });
     
     
