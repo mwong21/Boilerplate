@@ -135,6 +135,8 @@ app.get('/', function(req, res) {
     console.log("USER INFO");
     console.log(req.param("oauth_token"));
     console.log(req.user);
+    global.token = req.param("oauth_token");
+    global.token_secret = req.param("oauth_verifier");
     index.view(req, res);
 });
 app.get('/connect', function(req, res) {
