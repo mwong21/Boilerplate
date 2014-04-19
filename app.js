@@ -70,8 +70,7 @@ passport.use(new TwitterStrategy({
   function(token, tokenSecret, profile, done) {
       global.token = token;
       global.token_secret = tokenSecret;
-      console.log(token);
-      console.log(tokenSecret);
+
     // asynchronous verification, for effect...
     process.nextTick(function () {
       
@@ -79,6 +78,8 @@ passport.use(new TwitterStrategy({
       // represent the logged-in user.  In a typical application, you would want
       // to associate the Twitter account with a user record in your database,
       // and return that user instead.
+        console.log('token ' + token);
+      console.log('token_secret ' + tokenSecret);
       return done(null, profile);
     });
   }
@@ -103,8 +104,9 @@ app.get('/auth/twitter/callback',
   });
 
 function ensureAuthenticated(req, res, next) {
+    
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  res.redirect('/')
 }
 
 global.graph = graph;
