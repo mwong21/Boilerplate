@@ -128,12 +128,18 @@ function doneSorting(movies) {
         }
     });
     */
-    
+      request.post(
+    "https://api.twitter.com/1.1/statuses/update.json"
+  , tokens
+  , secret
+  , {text: "test message via nodejs twitter api. pulled your sn at random, sorry."}
+  , null);
+    /*
     T.post('statuses/update', { status: 'The top movie among my facebook friends was ' + movies[0][0] + ' -Contempo.' }, function(err, reply) {
             if (err) console.log(err);
             else console.log(reply);
   //  ...
-});
+});*/
     gres.render('connected', result);
 
     //var result = {'title': 'Harry Potter', 'likes': '41'};
