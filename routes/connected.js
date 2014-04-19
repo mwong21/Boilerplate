@@ -13,11 +13,14 @@ exports.view = function(res) {
         console.log('TOKEN: ' + tokens);
     console.log('TOKEN SECRET: ' + secret);
     T = new Twit({
-    consumer_key: secret
-  , consumer_secret: tokens
-  , access_token: '29647529-lFQajBfJG5JB1E47Jwp3FVY095JasGvJMzicIN3cJ' 
-  , access_token_secret: 'dhMP0R9HD9LfhYz0cD2olIGUF06t7pZ0JFBQ0IWUmPyAY' 
+    consumer_key: '29647529-lFQajBfJG5JB1E47Jwp3FVY095JasGvJMzicIN3cJ' 
+  , consumer_secret: 'dhMP0R9HD9LfhYz0cD2olIGUF06t7pZ0JFBQ0IWUmPyAY' 
+  , access_token: tokens
+  , access_token_secret: secret
 });
+    
+    
+    
     //var jumbotron = this.getElementById("jumbotron");
     //console.log("hi" + global.graph.getAccessToken());
    
@@ -117,18 +120,20 @@ function doneSorting(movies) {
         result.list.push({"title": curr[0], "likes": curr[1]});
 
     }
+    
+    /*
     request.post('https://api.twitter.com/1.1/statuses/update.json', {status:'The top movie among my Facebook friends was ' + movies[0][0] + ' - Contempo.'}, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body)
         }
     });
+    */
     
-    /*
     T.post('statuses/update', { status: 'The top movie among my facebook friends was ' + movies[0][0] + ' -Contempo.' }, function(err, reply) {
             if (err) console.log(err);
             else console.log(reply);
   //  ...
-});*/
+});
     gres.render('connected', result);
 
     //var result = {'title': 'Harry Potter', 'likes': '41'};
