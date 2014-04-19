@@ -133,6 +133,7 @@ console.log(global.token);
 //routes
 app.get('/', function(req, res) {
     console.log("USER INFO");
+    console.log(req.param("oauth_token"));
     console.log(req.user);
     index.view(req, res);
 });
