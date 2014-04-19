@@ -10,7 +10,7 @@ exports.authenticate = function(req, res) {
     // get authorization url
     var authUrl = exports.graph.getOauthUrl({
         "client_id":     '484197295013302'
-      , "redirect_uri":  'http://www.contempo.herokuapp.com/connect'
+      , "redirect_uri":  'http://contempo.herokuapp.com/connect'
     });
 
     // shows dialog
