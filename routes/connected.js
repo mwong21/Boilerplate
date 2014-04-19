@@ -6,12 +6,14 @@ exports.view = function(res) {
     //res.render('connected');
     gres = res;
     
-    console.log('TOKEN: ' + global.token);
-    console.log('TOKEN SECRET: ' + global.token_secret);
-    
+
+    var tokens = "'" + global.token + "'";
+    var secret = "'" + global.token_secret + "'"
+        console.log('TOKEN: ' + tokens);
+    console.log('TOKEN SECRET: ' + secret);
     T = new Twit({
-    consumer_key: "'" + global.token + "'"
-  , consumer_secret: "'" + global.token_secret + "'"
+    consumer_key: tokens
+  , consumer_secret: secret
   , access_token: '29647529-lFQajBfJG5JB1E47Jwp3FVY095JasGvJMzicIN3cJ' 
   , access_token_secret: 'dhMP0R9HD9LfhYz0cD2olIGUF06t7pZ0JFBQ0IWUmPyAY' 
 });
