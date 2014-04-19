@@ -105,7 +105,7 @@ app.get('/auth/twitter/callback',
 
 function ensureAuthenticated(req, res, next) {
     
-  if (req.isAuthenticated()) { return next(); }
+  if (req.isAuthenticated()) { console.log("REQ = " + req); return next(); }
   res.redirect('/')
 }
 
