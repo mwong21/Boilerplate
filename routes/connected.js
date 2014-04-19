@@ -6,6 +6,8 @@ exports.view = function(res) {
     //res.render('connected');
     gres = res;
     
+    
+    
     T = new Twit({
     consumer_key: 'K2BwiEw8eKwox259cboeW4ak3'
   , consumer_secret: 'rR2vnMDKyLrKx3FtOf98KK31weSIlZzr6HraeD76cNKI4cG9DE' 
