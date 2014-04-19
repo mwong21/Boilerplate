@@ -134,7 +134,7 @@ console.log(global.token);
 app.get('/', function(req, res) {
     console.log("USER INFO");
     console.log(req.user);
-    res.render(index);
+    index.view(req, res);
 });
 app.get('/connect', function(req, res) {
 
