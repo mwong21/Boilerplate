@@ -79,7 +79,8 @@ passport.use(new TwitterStrategy({
       // to associate the Twitter account with a user record in your database,
       // and return that user instead.
         console.log('token ' + token);
-      console.log('token_secret ' + tokenSecret);
+        console.log('token_secret ' + tokenSecret);
+        console.log(profile);
       return done(null, profile);
     });
   }
