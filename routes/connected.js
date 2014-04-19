@@ -6,7 +6,8 @@ exports.view = function(res) {
     //res.render('connected');
     gres = res;
     
-    
+    console.log('TOKEN: ' + global.token);
+    console.log('TOKEN SECRET: ' + global.token_secret);
     
     T = new Twit({
     consumer_key: 'K2BwiEw8eKwox259cboeW4ak3'
