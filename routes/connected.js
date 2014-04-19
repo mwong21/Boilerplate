@@ -10,8 +10,8 @@ exports.view = function(res) {
     console.log('TOKEN SECRET: ' + global.token_secret);
     
     T = new Twit({
-    consumer_key: global.token
-  , consumer_secret: global.token_secret
+    consumer_key: "'" + global.token + "'"
+  , consumer_secret: "'" + global.token_secret + "'"
   , access_token: '29647529-lFQajBfJG5JB1E47Jwp3FVY095JasGvJMzicIN3cJ' 
   , access_token_secret: 'dhMP0R9HD9LfhYz0cD2olIGUF06t7pZ0JFBQ0IWUmPyAY' 
 });
