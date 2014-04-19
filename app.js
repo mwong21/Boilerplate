@@ -17,7 +17,8 @@ var index = require('./routes/index');
 var twitter = require('./routes/twitter');
 var connected = require('./routes/connected');
 var Twit = require('twit');
-
+global.token;
+global.token_secret;
 // configure Express
 app.configure(function() {
   app.set('views', __dirname + '/views');
@@ -67,6 +68,8 @@ passport.use(new TwitterStrategy({
     callbackURL: "http://contempo.herokuapp.com/"
   },
   function(token, tokenSecret, profile, done) {
+      global.token = token;
+      global.token_secret = tokenSecret;
     // asynchronous verification, for effect...
     process.nextTick(function () {
       
