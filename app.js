@@ -128,7 +128,7 @@ var conf = {
   , scope:          'email, read_stream, user_status, friends_likes, user_interests, friends_interests, user_actions.video, user_likes'
   , redirect_uri:   'http://contempo.herokuapp.com/connect'
 };
-console.log("this happened");
+console.log(global.token);
 
 //routes
 app.get('/', index.view);
