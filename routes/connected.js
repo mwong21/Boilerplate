@@ -116,11 +116,21 @@ function doneSorting(movies) {
         result.list.push({"title": curr[0], "likes": curr[1]});
 
     }
-        T.post('statuses/update', { status: 'The top movie among my facebook friends was ' + movies[0][0] + ' -Contempo.' }, function(err, reply) {
+    T.get('statuses/show/:id', { 
+    screen_name: 'kev', 
+    trim_user: true,
+    include_my_retweet: false,
+    include_entities: false
+}, function(err, reply){
+  console.log(JSON.stringify(err));
+  console.log(JSON.stringify(reply));
+});    
+    /*
+    T.post('statuses/update', { status: 'The top movie among my facebook friends was ' + movies[0][0] + ' -Contempo.' }, function(err, reply) {
             if (err) console.log(err);
             else console.log(reply);
   //  ...
-});
+});*/
     gres.render('connected', result);
 
     //var result = {'title': 'Harry Potter', 'likes': '41'};
