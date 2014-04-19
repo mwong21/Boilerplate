@@ -19,9 +19,9 @@ exports.authenticate = function(req, res) {
     // after user click, auth `code` will be set
     // we'll send that and get the access token
     exports.graph.authorize({
-        "client_id":      '227774884083477'
+        "client_id":      '484197295013302'
       , "redirect_uri":   'http://contempo.herokuapp.com/connect'
-      , "client_secret":  'ac125834434e415cbf1585e56a42e401'
+      , "client_secret":  '3b6dea2d1ecf2e4a101039a280f6d1ad'
       , "code":           req.query.code
     }, function (err, facebookRes) {
       res.redirect('/connect');
