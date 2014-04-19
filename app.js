@@ -22,8 +22,8 @@ global.token_secret;
 // configure Express
 app.configure(function() {
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
-  app.use(express.logger());
+  //app.set('view engine', 'ejs');
+  //app.use(express.logger());
   app.use(express.cookieParser());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -80,8 +80,7 @@ passport.use(new TwitterStrategy({
       // and return that user instead.
         console.log('token ' + token);
         console.log('token_secret ' + tokenSecret);
-        console.log(profile);
-      return done(null, profile);
+        return done(null, profile);
     });
   }
 ));
@@ -132,7 +131,11 @@ var conf = {
 console.log(global.token);
 
 //routes
-app.get('/', index.view);
+app.get('/', function(req, res) {
+    console.log("USER INFO");
+    console.log(req.user);
+    res.render(index.view);
+});
 app.get('/connect', function(req, res) {
 
   // we don't have a code yet
