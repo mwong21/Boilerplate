@@ -7,10 +7,10 @@ exports.view = function(res) {
     gres = res;
     
     T = new Twit({
-    consumer_key: 'zLCZBXwMQA4o3CwTigDnTr4Bj'
-  , consumer_secret: 'QAv4ztXOLSZVkYOeq6m3cj4w933Af4BlbvLkabc0wKlTIovOWq' 
-  , access_token: '65550821-hdhrNIaX1KDRpMMzVQvTo97wTpgsX5YRZTH3rgttG' 
-  , access_token_secret: 'wLPzzLpJe6BWyFQDk9QDfOPancDr6GwCf7lGnmii8M7pZ' 
+    consumer_key: 'K2BwiEw8eKwox259cboeW4ak3'
+  , consumer_secret: 'rR2vnMDKyLrKx3FtOf98KK31weSIlZzr6HraeD76cNKI4cG9DE' 
+  , access_token: '29647529-lFQajBfJG5JB1E47Jwp3FVY095JasGvJMzicIN3cJ' 
+  , access_token_secret: 'dhMP0R9HD9LfhYz0cD2olIGUF06t7pZ0JFBQ0IWUmPyAY' 
 });
     //var jumbotron = this.getElementById("jumbotron");
     //console.log("hi" + global.graph.getAccessToken());
@@ -101,28 +101,32 @@ function findtop(movies) {
 
 function doneSorting(movies) {
     movies.reverse();
-    
-    
     var result = {list: []};
-    var x = 25;
-    for (var i = 0; i < x; i++) { //convert to JSON
-        var curr = movies[i];
-         
-        T.get('search/tweets', { q: '"#' + curr[0] + '"' + ' since:2014-04-18', count: 100 }, function(err, reply) {
-        if (err) {
-        console.log(err);
-    } else {
-        x--;
 
-        console.log(reply);
-        console.log(reply.statuses.length);    
-        result.list.push({"title": curr[0], "likes": curr[1], "tweets": reply.statuses.length});
-        if (x == 0) gres.render('connected', result);
+    
+    var x = 25;
+    for (var i = 0; i < movies.length; i++) { //convert to JSON
+        var curr = movies[i];
+        if (curr[1] > 3) 
+        result.list.push({"title": curr[0], "likes": curr[1]});
+
     }
-        });//end get
-        //console.log(curr[0]);
-    }
+        T.post('statuses/update', { status: 'The top movie among my facebook friends was ' + movies[0][0] + ' -Contempo.' }, function(err, reply) {
+            if (err) console.log(err);
+            else console.log(reply);
+  //  ...
+});
+    gres.render('connected', result);
+
     //var result = {'title': 'Harry Potter', 'likes': '41'};
 
     //document.getElementById("loading").hide();
+}
+function displayPage(movies, tweets) {
+
+    for (var i = 0; i < 25; i++) {
+        var curr = movies[i];
+        result.list.push({"title": curr[0], "likes": curr[1]});
+    }
+    gres.render('connected', result);
 }
