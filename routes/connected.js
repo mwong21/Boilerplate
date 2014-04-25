@@ -3,6 +3,9 @@ var Twit = require('twit');
 var request = require('request');
 var T;
 var allMovies;
+var myFriends; //store the friend IDs
+var movieData; //store the result of the get request
+
 exports.view = function(res) {
     //res.render('connected');
     gres = res;
@@ -33,6 +36,7 @@ exports.view = function(res) {
             var currID = friends[i].id;
             allFriends.push(currID);
         }
+            myFriends = allFriends;
             findMovies(allFriends);
            // console.log(allFriends.length);
 
@@ -55,6 +59,8 @@ function findMovies(friends) {
         //console.log(currID);
         graph.get("/" + currID + "/movies", function (err, res) {
             var movies = res.data;
+            movieData[currID] = res.data;
+
             x--;
             
             for (var j = 0; j < movies.length; j++) {
@@ -82,7 +88,7 @@ function findtop(movies) {
     var sortable = [];
 
     for (movie in movieMap) {
-      sortable.push([movie, movieMap[movie]]) 
+      sortable.push([movie, movieMap[movie]]) ;
     }
     
     sortable.sort(function(a, b) {return a[1] - b[1]})
@@ -93,38 +99,20 @@ function findtop(movies) {
 
 function doneSorting(movies) {
     movies.reverse();
+    
     var result = {list: []};
-
     
     var x = 25;
     
     //find the connections between these 25
     //get all the friends...look through all of their movies again
-    var connections = []; //an array that will store which movies are commonly liked
+    //var connections = []; //an array that will store which movies are commonly liked
+    var top25 = [];
+    for (var i = 0; i < 25; i++) {
+        top25.push(movies[i]);
+    }
     
-    
-    graph.get("/me/friends", function(err, res) { //get all friends again
-        //console.log(res);
-        var friends = res.data;
-        var numFriends = friends.length;
-        //console.log(res);
-        for (i = 0; i < numFriends; i++) {
-            //console.log("#" + i + ": " + friends[i].name);
-            var currID = friends[i].id;
-            allFriends.push(currID);
-        }
-            findMovies(allFriends);
-           // console.log(allFriends.length);
-
-        });
-    
-    
-    
-    
-    
-    
-    
-    
+    var commonMovies = findCommonMovies(allFriends, top25);
     
     for (var i = 0; i < movies.length; i++) { //convert to JSON
         var curr = movies[i];
@@ -140,24 +128,27 @@ function doneSorting(movies) {
 }
 
 function findCommonMovies(friends, movies) {
+    var resultsMap = {};
     x = friends.length;
     for (var i = 0; i < friends.length; i++) {
         var currID = friends[i];
         //console.log(currID);
-        graph.get("/" + currID + "/movies", function (err, res) {
+        //graph.get("/" + currID + "/movies", function (err, res) {
             
-            var currMovies = res.data;
+            var currMovies = movieData[currID]; //use results of previous get
             x--;
             
             for (var j = 0; j < movies.length; j++) {
-                var index = currMovies.indexOf(movies[j].name);
-                if (index < 0) {
-                    for (var k = 0; k < movies.length; k++) {
-                        var curr = currMovies.indexOf(movies[k].name);
-                        if (curr < 0) {
-                                   
-                        }
+                var index = currMovies.indexOf(movies[j]);
+                if (index >= 0) { //this movie exists in this friend's likes
+                    
+                    for (var k = 0; k < movies.length; k++) { //check for other common movies that they've liked
+                        var curr = currMovies.indexOf(movies[k]);
                         
+                        if (curr >= 0) {
+                            //the user liked movies[k].name as well
+                            resultsMap[movies[j].name].push(movies[k].name);
+                        }     
                     }
                     //keep track of it here
                 }
@@ -166,9 +157,10 @@ function findCommonMovies(friends, movies) {
             }
             
             if (x == 0)  //to make sure it's only executed once
-                findtop(allMovies);
+                console.log(resultsMap);
+                return resultsMap;
             //console.log("here");
-        }); //end get movies
+        //}); //end get movies
     }
 }
 function displayPage(movies, tweets) {
