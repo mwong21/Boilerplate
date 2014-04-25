@@ -141,7 +141,6 @@ function findCommonMovies(friends, movies) {
             var currMovies = movieData[currID];//use results of previous get
             //console.log("CURR MOVIES = " + currMovies + currID + i);
             x--;
-           */ 
         
             for (var j = 0; j < movies.length; j++) {
                 var index = currMovies.indexOf(movies[j]);
