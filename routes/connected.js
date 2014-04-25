@@ -147,7 +147,7 @@ function findCommonMovies(friends, movies) {
             
             var currMovies = movieData[currID];//use results of previous get
             for (movie in currMovies)
-            console.log("CURR MOVIES = " + movie.name);
+                console.log("CURR MOVIES = " + movie);
             x--;
         
             for (var j = 0; j < movies.length; j++) {
