@@ -140,7 +140,7 @@ function findCommonMovies(friends, movies) {
     //console.log("MOVIE DATA: " + movieData[friend]);
     for (var i = 0; i < friends.length; i++) {
         var currID = friends[i];
-            console.log("DURING THE METHOD adding: " + movieData[currID]);
+            //console.log("DURING THE METHOD adding: " + movieData[currID]);
 
         //console.log(currID);
         //graph.get("/" + currID + "/movies", function (err, res) {
@@ -150,8 +150,8 @@ function findCommonMovies(friends, movies) {
             x--;
         
             for (var j = 0; j < movies.length; j++) {
-                //var index = currMovies.indexOf(movies[j]);
-                //console.log(index);
+                var index = currMovies.indexOf(movies[j]);
+                console.log(index);
                 
                 /*
                 if (index >= 0) { //this movie exists in this friend's likes
