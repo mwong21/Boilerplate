@@ -37,7 +37,8 @@ exports.view = function(res) {
             allFriends.push(currID);
         }
             myFriends = allFriends;
-            findMovies(allFriends);
+            
+            findMovies(myFriends);
            // console.log(allFriends.length);
 
         });
