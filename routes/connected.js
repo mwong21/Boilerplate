@@ -9,7 +9,7 @@ var movieData; //store the result of the get request
 exports.view = function(res) {
     //res.render('connected');
     gres = res;
-        
+    movieData = {};
     //var friends = new Array();
     graph.get("/me/movies", function (err, res) {
                 
@@ -157,7 +157,7 @@ function findCommonMovies(friends, movies) {
             }
             
             if (x == 0)  //to make sure it's only executed once
-                console.log(resultsMap);
+                console.log("results map is " + resultsMap);
                 return resultsMap;
             //console.log("here");
         //}); //end get movies
