@@ -135,9 +135,11 @@ function findCommonMovies(friends, movies) {
         //console.log(currID);
         //graph.get("/" + currID + "/movies", function (err, res) {
             
-            var currMovies = movieData[currID]; //use results of previous get
+            var currMovies = movieData[currID];//use results of previous get
+            console.log("CURR MOVIES = " + currMovies);
             x--;
             
+        /*
             for (var j = 0; j < movies.length; j++) {
                 var index = currMovies.indexOf(movies[j]);
                 if (index >= 0) { //this movie exists in this friend's likes
@@ -155,7 +157,7 @@ function findCommonMovies(friends, movies) {
                 //if the movie is the same as one of the 25 listed, then keep track of it
                 
             }
-            
+            */
             if (x == 0)  //to make sure it's only executed once
                 console.log("results map is " + resultsMap);
                 return resultsMap;
