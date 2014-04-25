@@ -158,9 +158,10 @@ function findCommonMovies(friends, movies) {
                 
             }
             */
-            if (x == 0)  //to make sure it's only executed once
+            if (x == 0) { //to make sure it's only executed once
                 console.log("results map is " + resultsMap);
                 return resultsMap;
+            }
             //console.log("here");
         //}); //end get movies
     }
