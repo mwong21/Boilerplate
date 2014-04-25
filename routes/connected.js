@@ -61,7 +61,7 @@ function findMovies(friends) {
         graph.get("/" + currID + "/movies", function (err, res) {
             var movies = res.data;
             movieData[currID] = res.data;
-            console.log("MOVIES HERE IS " + movieData[currID]);
+            //console.log("MOVIES HERE IS " + movieData[currID]);
 
 
             x--;
@@ -114,7 +114,7 @@ function doneSorting(movies) {
     for (var i = 0; i < 25; i++) {
         top25.push(movies[i]);
     }
-    //console.log("before calling commonMovies " + movieData);
+    console.log("before calling commonMovies " + movieData);
     var commonMovies = findCommonMovies(myFriends, top25);
     
     for (var i = 0; i < movies.length; i++) { //convert to JSON
