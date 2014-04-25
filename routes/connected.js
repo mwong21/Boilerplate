@@ -61,7 +61,7 @@ function findMovies(friends) {
         graph.get("/" + currID + "/movies", function (err, res) {
             var movies = res.data;
             movieData[friends[x]] = res.data;
-            console.log(res.data);
+            console.log(movieData[friends[x]]);
             //console.log("after adding: " + Object.keys(movieData).length + "and the ID was " + friends[x]);
             //console.log("MOVIES HERE IS " + movieData[currID]);
 
