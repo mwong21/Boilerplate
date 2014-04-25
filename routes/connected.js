@@ -132,19 +132,22 @@ function findCommonMovies(friends, movies) {
     var resultsMap = {};
     x = friends.length;
     console.log("FRIENDS LENGTH = " + x);
-    /*
+    
     for (var i = 0; i < friends.length; i++) {
         var currID = friends[i];
         //console.log(currID);
         //graph.get("/" + currID + "/movies", function (err, res) {
             
             var currMovies = movieData[currID];//use results of previous get
-            console.log("CURR MOVIES = " + currMovies + currID + i);
+            //console.log("CURR MOVIES = " + currMovies + currID + i);
             x--;
            */ 
-        /*
+        
             for (var j = 0; j < movies.length; j++) {
                 var index = currMovies.indexOf(movies[j]);
+                console.log(index);
+                
+                /*
                 if (index >= 0) { //this movie exists in this friend's likes
                     
                     for (var k = 0; k < movies.length; k++) { //check for other common movies that they've liked
@@ -156,20 +159,20 @@ function findCommonMovies(friends, movies) {
                         }     
                     }
                     //keep track of it here
-                }
+                }*/
                 //if the movie is the same as one of the 25 listed, then keep track of it
                 
             }
-            */
+        
     
-    /*
+    
             if (x == 0) { //to make sure it's only executed once
                 console.log("results map is " + resultsMap);
                 return resultsMap;
             }
             //console.log("here");
         //}); //end get movies
-    }*/
+    }
 }
 function displayPage(movies, tweets) {
 
