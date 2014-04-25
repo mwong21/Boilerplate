@@ -132,6 +132,7 @@ function findCommonMovies(friends, movies) {
     var resultsMap = {};
     x = friends.length;
     console.log("FRIENDS LENGTH = " + x);
+    /*
     for (var i = 0; i < friends.length; i++) {
         var currID = friends[i];
         //console.log(currID);
@@ -140,7 +141,7 @@ function findCommonMovies(friends, movies) {
             var currMovies = movieData[currID];//use results of previous get
             console.log("CURR MOVIES = " + currMovies + currID + i);
             x--;
-            
+           */ 
         /*
             for (var j = 0; j < movies.length; j++) {
                 var index = currMovies.indexOf(movies[j]);
@@ -160,13 +161,15 @@ function findCommonMovies(friends, movies) {
                 
             }
             */
+    
+    /*
             if (x == 0) { //to make sure it's only executed once
                 console.log("results map is " + resultsMap);
                 return resultsMap;
             }
             //console.log("here");
         //}); //end get movies
-    }
+    }*/
 }
 function displayPage(movies, tweets) {
 
