@@ -6,24 +6,7 @@ var allMovies;
 exports.view = function(res) {
     //res.render('connected');
     gres = res;
-    
-
-    var tokens = "'" + global.token + "'";
-    var secret = "'" + global.token_secret + "'"
-        console.log('TOKEN: ' + tokens);
-    console.log('TOKEN SECRET: ' + secret);
-    T = new Twit({
-    consumer_key: tokens    
-  , consumer_secret: secret
-  , access_token: '29647529-lFQajBfJG5JB1E47Jwp3FVY095JasGvJMzicIN3cJ' 
-  , access_token_secret: 'dhMP0R9HD9LfhYz0cD2olIGUF06t7pZ0JFBQ0IWUmPyAY'
-});
-    
-    
-    
-    //var jumbotron = this.getElementById("jumbotron");
-    //console.log("hi" + global.graph.getAccessToken());
-   
+        
     //var friends = new Array();
     graph.get("/me/movies", function (err, res) {
                 
@@ -114,26 +97,79 @@ function doneSorting(movies) {
 
     
     var x = 25;
+    
+    //find the connections between these 25
+    //get all the friends...look through all of their movies again
+    var connections = []; //an array that will store which movies are commonly liked
+    
+    
+    graph.get("/me/friends", function(err, res) { //get all friends again
+        //console.log(res);
+        var friends = res.data;
+        var numFriends = friends.length;
+        //console.log(res);
+        for (i = 0; i < numFriends; i++) {
+            //console.log("#" + i + ": " + friends[i].name);
+            var currID = friends[i].id;
+            allFriends.push(currID);
+        }
+            findMovies(allFriends);
+           // console.log(allFriends.length);
+
+        });
+    
+    
+    
+    
+    
+    
+    
+    
+    
     for (var i = 0; i < movies.length; i++) { //convert to JSON
         var curr = movies[i];
         if (curr[1] > 3) 
         result.list.push({"title": curr[0], "likes": curr[1]});
-
     }
     
-    
-    
-    
-    T.post('statuses/update', { status: 'The top movie among my facebook friends was ' + movies[0][0] + ' -Contempo.' }, function(err, reply) {
-            if (err) console.log(err);
-            else console.log(reply);
-  //  ...
-});
     gres.render('connected', result);
 
     //var result = {'title': 'Harry Potter', 'likes': '41'};
 
     //document.getElementById("loading").hide();
+}
+
+function findCommonMovies(friends, movies) {
+    x = friends.length;
+    for (var i = 0; i < friends.length; i++) {
+        var currID = friends[i];
+        //console.log(currID);
+        graph.get("/" + currID + "/movies", function (err, res) {
+            
+            var currMovies = res.data;
+            x--;
+            
+            for (var j = 0; j < movies.length; j++) {
+                var index = currMovies.indexOf(movies[j].name);
+                if (index < 0) {
+                    for (var k = 0; k < movies.length; k++) {
+                        var curr = currMovies.indexOf(movies[k].name);
+                        if (curr < 0) {
+                                   
+                        }
+                        
+                    }
+                    //keep track of it here
+                }
+                //if the movie is the same as one of the 25 listed, then keep track of it
+                
+            }
+            
+            if (x == 0)  //to make sure it's only executed once
+                findtop(allMovies);
+            //console.log("here");
+        }); //end get movies
+    }
 }
 function displayPage(movies, tweets) {
 
