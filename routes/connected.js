@@ -133,7 +133,7 @@ function findCommonMovies(friends, movies) {
     x = friends.length;
     console.log("FRIENDS LENGTH = " + x);
     for (movie in movieData) 
-    console.log("MOVIE DATA: " + movie);
+    console.log("MOVIE DATA: " + movie.name);
     for (var i = 0; i < friends.length; i++) {
         var currID = friends[i];
         //console.log(currID);
@@ -168,7 +168,7 @@ function findCommonMovies(friends, movies) {
     
             if (x == 0) { //to make sure it's only executed once
                 console.log("results map is " + resultsMap);
-                return resultsMap;
+                //return resultsMap;
             }
             //console.log("here");
         //}); //end get movies
