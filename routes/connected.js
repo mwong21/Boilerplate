@@ -61,7 +61,6 @@ function findMovies(friends) {
         graph.get("/" + currID + "/movies", function (err, res) {
             var movies = res.data;
             movieData[friends[x]] = res.data;
-            console.log(movieData[friends[x]]);
             //console.log("after adding: " + Object.keys(movieData).length + "and the ID was " + friends[x]);
             //console.log("MOVIES HERE IS " + movieData[currID]);
 
@@ -136,6 +135,8 @@ function doneSorting(movies) {
 function findCommonMovies(friends, movies) {
     var resultsMap = {};
     x = friends.length;
+    console.log(movieData[friends[x-1]]);
+
    // console.log("FRIENDS LENGTH = " + x);
     //for (friend in friends) 
     //console.log("MOVIE DATA: " + movieData[friend]);
