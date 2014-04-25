@@ -54,24 +54,24 @@ function strcmp(a, b) {
 
 var x = 0; //keeps track of how many friends were already checked
 function findMovies(friends) {
-    x = friends.length;
+    x = 0;
     for (var i = 0; i < friends.length; i++) {
         var currID = friends[i];
         //console.log(currID);
         graph.get("/" + currID + "/movies", function (err, res) {
             var movies = res.data;
-            movieData[currID] = res.data;
+            movieData[friends[x]] = res.data;
             console.log("after adding: " + Object.keys(movieData).length + "and the ID was " + currID);
             //console.log("MOVIES HERE IS " + movieData[currID]);
 
 
-            x--;
+            x++;
             
             for (var j = 0; j < movies.length; j++) {
                 allMovies.push(movies[j].name);
             }
             
-            if (x == 0)  //to make sure it's only executed once
+            if (x == friends.length)  //to make sure it's only executed once
                 findtop(allMovies);
             //console.log("here");
         }); //end get movies
