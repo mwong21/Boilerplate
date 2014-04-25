@@ -114,8 +114,8 @@ function doneSorting(movies) {
     for (var i = 0; i < 25; i++) {
         top25.push(movies[i]);
     }
-    for (movies in movieData) 
-    console.log("before calling commonMovies " + movieData);
+    for (friend in myFriends) 
+    console.log("before calling commonMovies " + movieData[friend]);
     var commonMovies = findCommonMovies(myFriends, top25);
     
     for (var i = 0; i < movies.length; i++) { //convert to JSON
