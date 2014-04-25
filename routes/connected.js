@@ -112,7 +112,7 @@ function doneSorting(movies) {
         top25.push(movies[i]);
     }
     
-    var commonMovies = findCommonMovies(allFriends, top25);
+    var commonMovies = findCommonMovies(myFriends, top25);
     
     for (var i = 0; i < movies.length; i++) { //convert to JSON
         var curr = movies[i];
